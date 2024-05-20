@@ -7,12 +7,15 @@ use App\Http\Requests\SalesRequest;
 use App\Models\Product;
 use App\Models\Sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
     public function index()
     {
-        $sales = Sales::join('products', 'products.id', '=', 'sales.product_id')
+        $sales = DB::table('sales', 's')
+            ->selectRaw('s.id, p.name, p.stock, s.total_sales, s.transaction_date, p.type')
+            ->join('products AS p', 'p.id', '=', 's.product_id')
             ->get();
 
         if ($sales) {
@@ -30,8 +33,10 @@ class SalesController extends Controller
 
     public function show($id)
     {
-        $sales = Sales::join('products', 'products.id', '=', 'sales.product_id')
-            ->where('sales.id', $id)
+        $sales = DB::table('sales', 's')
+            ->selectRaw('s.id, p.name, p.stock, s.total_sales, s.transaction_date, p.type')
+            ->join('products AS p', 'p.id', '=', 's.product_id')
+            ->where('s.id', $id)
             ->get();
 
          if ($sales) {
@@ -49,19 +54,12 @@ class SalesController extends Controller
 
     public function store(SalesRequest $request) 
     {
-        $product = Product::create([
-            'name' => $request->name,
-            // 'stock' => $request->stock,
-            'type' => $request->type
-        ]);
+
+        $product = Product::find($request->product_id);
 
         if ($product->stock) {
-            // $product->stock->increment('quantity', $request->quantity);
-            $product->stock->decrement('quantity', $request->total_sales);
+            $product->decrement('stock', $request->total_sales);
         }
-        // } else {
-        //     Stock::create($request->all());
-        // }
 
         $sales = Sales::create([
             'product_id' => $request->product_id,
@@ -69,7 +67,7 @@ class SalesController extends Controller
             'transaction_date' => $request->transaction_date,
         ]);
 
-        if ($product || $sales) {
+        if ($product && $sales) {
             return response()->json([
                 'status'=>'success',
                 'message' => 'Add Sales Successfully']);
@@ -82,19 +80,23 @@ class SalesController extends Controller
 
     public function update(SalesRequest $request, $id) 
     {
-        $sales = Sales::join('products', 'products.id', '=', 'sales.product_id')
-            ->where('sales.id', $id)
-            ->update([
-                'products.name' => $request->name,
-                'products.stock' => $request->stock,
-                'products.type' => $request->type,
-                'sales.total_sales' => $request->total_sales,
-                'sales.transaction_date' => $request->transaction_date,
-                'sales.product_id' => $request->product_id,
+        $product = Product::find($request->product_id);
+
+        $sales = Sales::find($id);
+        $new_total_sales = $sales->total_sales - $request->total_sales;
+
+        if ($sales->total_sales > $request->total_sales) {
+            $product->increment('stock', abs($new_total_sales));
+        } elseif ($sales->total_sales < $request->total_sales){
+            $product->decrement('stock', abs($new_total_sales));
+        }
+
+        $sales->update([
+                'total_sales' => $request->total_sales,
+                'transaction_date' => $request->transaction_date,
             ]);
         
-        
-        if ($sales) {
+        if ($product && $sales) {
             return response()->json([
                 'status'=>'success',
                 'message' => 'Edit Sales Successfully']);
@@ -107,18 +109,14 @@ class SalesController extends Controller
 
     public function destroy($id)
     {
-        $sales = Sales::join('products', 'products.id', '=', 'sales.product_id')
-            ->where('sales.id', $id)
-            ->get();
+        $sales = Sales::find($id);
         
         if ($sales) {
-            Sales::where('id', $id)->delete();
             Product::where('id', $sales->product_id)
-                ->update([
-                    'products.stock' => $request->stock,
-                    'products.type' => $request->type
-                ]);
+                ->increment('stock', $sales->total_sales);
 
+            $sales->delete();
+            
             return response()->json([
                 'status'=>'success',
                 'message' => 'Delete Sales Successfully']);

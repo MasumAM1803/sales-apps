@@ -22,12 +22,11 @@ class SalesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'stock' => 'required|integer',
-            'type' => 'required|string|max:255',
+            // 'name' => 'required|string|max:255',
+            // 'stock' => 'required|integer',
+            'product_id' => 'required|exists:App\Models\Product,id',
             'total_sales' => 'required|integer',
             'transaction_date' => 'required|string',
-            'product_id' => 'required|exists:App\Models\Products,id',
         ];
     }
 }
