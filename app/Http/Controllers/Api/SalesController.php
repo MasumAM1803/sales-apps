@@ -42,13 +42,13 @@ class SalesController extends Controller
          if ($sales) {
             return response()->json([
                 'status'=> 'success',
-                'message' => 'Activity Retrieved',
+                'message' => 'Sales Retrieved',
                 'data'=> $sales
             ]);
         } else {
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Activity Failed to Retrieve']);
+                'message' => 'Sales Failed to Retrieve']);
         }
     }
 

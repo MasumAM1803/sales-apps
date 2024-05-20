@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SalesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,14 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::post('/product', [ProductController::class, 'store']);
+Route::put('/product/{id}', [ProductController::class, 'update']);
+Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
 Route::get('/sales', [SalesController::class, 'index']);
 Route::get('/sales/{id}', [SalesController::class, 'show']);
 Route::post('/sales', [SalesController::class, 'store']);
 Route::put('/sales/{id}', [SalesController::class, 'update']);
 Route::delete('/sales/{id}', [SalesController::class, 'destroy']);
-
