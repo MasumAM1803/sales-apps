@@ -28,17 +28,16 @@ export default function Detail({ id }) {
                         </div>
                     </div>
 
-                    <Link href={route('product.list')}>
-                        <button className='flex items-center gap-1 px-3 py-2 mt-8 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700'>
+                    <Link href={route('product.list')} className='flex w-fit'>
+                        <button className='flex items-center w-fit gap-1 px-2 mt-8 text-xs font-bold uppercase rounded hover:text-gray-700 focus:outline-none focus:text-gray-700'>
                             <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                             </svg>
-
                             Back
                         </button>
                     </Link>
                     
-                    <div className="max-w-lg p-6 mt-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div className="p-6 mt-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     {
                         product.map((item) => (
                             <>

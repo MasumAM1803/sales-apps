@@ -47,10 +47,24 @@ export default function Welcome() {
             
             <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
-                    <div className='grid grid-cols-2 justify-between'>
-                        <div>
+                    <div className='grid grid-cols-2 justify-between mb-16'>
+                        <Link href={route('home')}>
                             <h1 className='text-2xl font-extrabold'>SIMULATION SHOP</h1>
+                        </Link>
+                        <div className='flex justify-end gap-x-8 gap-y-4'>
+                            <Link href={route('product.list')}>
+                                <button className='px-4 text-sm font-bold uppercase rounded hover:text-gray-700 focus:outline-none focus:text-gray-700'>
+                                    List Product
+                                </button>
+                            </Link>
+                            <Link href={route('sales.list')}>
+                                <button className='px-4 text-sm font-bold uppercase rounded hover:text-gray-700 focus:outline-none focus:text-gray-700'>
+                                    List Sales
+                                </button>
+                            </Link>
                         </div>
+                    </div>
+                    <div className='grid grid-cols-1 justify-end'>
                         <div className='flex justify-end'>
                             <Link href={route('cart')}>
                                 <button className='px-8 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700'>
@@ -59,7 +73,7 @@ export default function Welcome() {
                             </Link>
                         </div>
                     </div>
-                    <div className="mt-16">
+                    <div className="mt-8">
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {
                             product.map((item, index) => (

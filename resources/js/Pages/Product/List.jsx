@@ -32,9 +32,9 @@ export default function List() {
             <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
                     <div className='grid grid-cols-2 justify-between'>
-                        <div>
+                        <Link href={route('home')}>
                             <h1 className='text-2xl font-extrabold'>SIMULATION SHOP</h1>
-                        </div>
+                        </Link>
                     </div>
                     <div className="mt-16">
                         <div className="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
