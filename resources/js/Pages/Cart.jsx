@@ -54,6 +54,7 @@ export default function Cart({ auth, laravelVersion, phpVersion }) {
         axios.post('http://127.0.0.1:8000/api/sales', checkout_data)
         .then((res) => {
             alert('Checkout Successfully')
+            window.location.replace(route('home'))
         }).catch((err) => {
             console.log(err)
         })
