@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function List() {
     const [product, setProduct] = useState([]);
+    const [query, setQuery] = useState([]);
 
     const fetchProduct = () => {
         axios.get('http://127.0.0.1:8000/api/product')

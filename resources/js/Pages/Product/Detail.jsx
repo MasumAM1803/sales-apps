@@ -30,8 +30,8 @@ export default function Detail({ id }) {
 
                     <Link href={route('product.list')} className='flex w-fit'>
                         <button className='flex items-center w-fit gap-1 px-2 mt-8 text-xs font-bold uppercase rounded hover:text-gray-700 focus:outline-none focus:text-gray-700'>
-                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+                            <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                             </svg>
                             Back
                         </button>
@@ -39,27 +39,27 @@ export default function Detail({ id }) {
                     
                     <div className="p-6 mt-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     {
-                        product.map((item) => (
-                            <>
+                        product.map((item, index) => (
+                            <div key={index}>
                                 <div className='mb-6'>
-                                    <label for="Nama Barang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Barang</label>
-                                    <input type="text" id="name" value={item.name} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly />
+                                    <label htmlFor="Nama Barang" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Barang</label>
+                                    <input type="text" id="name" value={item.name} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readOnly />
                                 </div>
                                 <div className='mb-6'>
-                                    <label for="Jenis Barang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Barang</label>
-                                    <input type="text" id="name" value={item.type} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly />
+                                    <label htmlFor="Jenis Barang" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Barang</label>
+                                    <input type="text" id="name" value={item.type} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readOnly />
                                 </div>
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                     <div>
-                                        <label for="Stok Barang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stok Barang</label>
-                                        <input type="text" id="name" value={item.stock} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly />
+                                        <label htmlFor="Stok Barang" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stok Barang</label>
+                                        <input type="text" id="name" value={item.stock} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readOnly />
                                     </div>
                                     <div>
-                                        <label for="Total Terjual" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Terjual</label>
-                                        <input type="text" id="name" value={item.total_sales} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly />
+                                        <label htmlFor="Total Terjual" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Terjual</label>
+                                        <input type="text" id="name" value={item.total_sales} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readOnly />
                                     </div>
                                 </div>
-                            </>
+                            </div>
                         ))
                     }
                     </div>
