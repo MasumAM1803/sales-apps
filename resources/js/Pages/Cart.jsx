@@ -53,7 +53,7 @@ export default function Cart({ auth, laravelVersion, phpVersion }) {
     const Checkout = () => {
         axios.post('http://127.0.0.1:8000/api/sales', checkout_data)
         .then((res) => {
-            console.log(res)
+            alert('Checkout Successfully')
         }).catch((err) => {
             console.log(err)
         })
@@ -74,13 +74,18 @@ export default function Cart({ auth, laravelVersion, phpVersion }) {
     return (
         <>
             <Head title="Welcome" />
-            <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+            <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
+                    <Link href={route('home')}>
+                        <button className='px-6 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700'>
+                            Back to List Product
+                        </button>
+                    </Link>
                     <div className="mt-16">
                         {
                             cartItems.length > 0 ? (
                             <>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                                <div className="grid grid-cols-1 gap-6 lg:gap-8">
                                     {cartItems.map((item, index) => (
                                         <div className="flex justify-between items-center" key={index}>
                                             <div className="flex gap-4">
@@ -110,7 +115,7 @@ export default function Cart({ auth, laravelVersion, phpVersion }) {
                                         </div>
                                     ))}
                                 </div>
-                                <div className='flex gap-6 mt-6'>
+                                <div className='flex gap-6 mt-8'>
                                         <button
                                             className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                                             onClick={() => {
