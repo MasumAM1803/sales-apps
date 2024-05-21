@@ -24,7 +24,7 @@ class SalesRequest extends FormRequest
         return [
             'product_id' => 'required|exists:App\Models\Product,id',
             'total_sales' => 'required|integer',
-            'transaction_date' => 'required|string',
+            'transaction_date' => 'string',
         ];
     }
 }

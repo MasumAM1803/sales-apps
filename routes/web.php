@@ -37,8 +37,8 @@ Route::get('/admin/product/create', [ProductController::class, 'create'])->name(
 Route::get('/admin/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 
 Route::get('/admin/sales', [SalesController::class, 'index'])->name('sales.list');
-Route::get('/admin/sales/detail/{id}', [SalesController::class, 'detail'])->name('sales.detail');
-Route::get('/admin/sales/create', [SalesController::class, 'create'])->name('sales.create');
+// Route::get('/admin/sales/detail/{id}', [SalesController::class, 'detail'])->name('sales.detail');
+// Route::get('/admin/sales/create', [SalesController::class, 'create'])->name('sales.create');
 Route::get('/admin/sales/edit/{id}', [SalesController::class, 'edit'])->name('sales.edit');
 
 

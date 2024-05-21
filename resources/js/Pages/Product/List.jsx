@@ -43,7 +43,6 @@ export default function List() {
                                     <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7 7V5"/>
                                     </svg>
-
                                     Add
                                 </button>
                             </Link>
@@ -57,35 +56,41 @@ export default function List() {
                                 </div>
                             </div>
                         </div>
-                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th className="px-6 py-3">Nama Barang</th>
-                                    <th className="px-6 py-3">Jenis Barang</th>
-                                    <th className="px-6 py-3">Stok</th>
-                                    <th className="px-6 py-3">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    product.map((item, index) => (
-                                        <tr key={index} className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
-                                            <td className='px-6 py-4'>
-                                                <Link href={route('product.detail', item.id)} className='flex'>
-                                                    {item.name}
-                                                </Link>
-                                            </td>
-                                            <td className='px-6 py-4'>{item.type}</td>
-                                            <td className='px-6 py-4'>{item.stock}</td>
-                                            <td className='flex gap-4 px-6 py-4'>
-                                                <Link href={route('product.edit', item.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
-                                                <button onClick={() => deleteProduct(item.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                        <div class="relative overflow-x-auto">
+                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th className="px-6 py-3">No</th>
+                                        <th className="px-6 py-3">Nama Barang</th>
+                                        <th className="px-6 py-3">Jenis Barang</th>
+                                        <th className="px-6 py-3">Stok</th>
+                                        <th className="px-6 py-3">Total Terjual</th>
+                                        <th className="px-6 py-3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        product.map((item, index) => (
+                                            <tr key={index} className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
+                                                <td className='px-6 py-4'>{index+1}</td>
+                                                <td className='px-6 py-4'>
+                                                    <Link href={route('product.detail', item.id)} className='flex'>
+                                                        {item.name}
+                                                    </Link>
+                                                </td>
+                                                <td className='px-6 py-4'>{item.type}</td>
+                                                <td className='px-6 py-4'>{item.stock}</td>
+                                                <td className='px-6 py-4'>{item.total_sales}</td>
+                                                <td className='flex gap-4 px-6 py-4'>
+                                                    <Link href={route('product.edit', item.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                    <button onClick={() => deleteProduct(item.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div className="flex justify-center mt-16 px-6 sm:items-center sm:justify-between">

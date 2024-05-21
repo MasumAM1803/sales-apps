@@ -12,7 +12,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        $products = DB::table('sales', 's')
+            ->selectRaw('p.id, p.name, p.stock, SUM(s.total_sales) AS total_sales, s.product_id, s.transaction_date, p.type')
+            ->rightJoin('products AS p', 'p.id', '=', 's.product_id')
+            ->groupBy('p.id')
+            ->get();
 
         if ($products) {
             return response()->json([
@@ -29,7 +34,13 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::where('id', $id)
+        // $product = Product::where('id', $id)
+        //     ->get();
+        $product = DB::table('sales', 's')
+            ->selectRaw('p.id, p.name, p.stock, SUM(s.total_sales) AS total_sales, p.type')
+            ->rightJoin('products AS p', 'p.id', '=', 's.product_id')
+            ->where('p.id', $id)
+            ->groupBy('p.id')
             ->get();
 
          if ($product) {

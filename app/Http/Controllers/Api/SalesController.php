@@ -34,7 +34,7 @@ class SalesController extends Controller
     public function show($id)
     {
         $sales = DB::table('sales', 's')
-            ->selectRaw('s.id, p.name, p.stock, s.total_sales, s.transaction_date, p.type')
+            ->selectRaw('s.id, p.name, p.stock, s.total_sales, s.transaction_date, s.product_id, p.type')
             ->join('products AS p', 'p.id', '=', 's.product_id')
             ->where('s.id', $id)
             ->get();
@@ -106,7 +106,7 @@ class SalesController extends Controller
 
         $sales->update([
                 'total_sales' => $request->total_sales,
-                'transaction_date' => $request->transaction_date,
+                // 'transaction_date' => $request->transaction_date,
             ]);
         
         if ($product && $sales) {
