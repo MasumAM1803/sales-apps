@@ -22,4 +22,8 @@ class ProductController extends Controller
     public function edit($id) {
         return Inertia::render('Product/Edit', ['id' => $id]);
     }
+
+    public function compare() {
+        return Inertia::render('Product/Compare');
+    }
 }

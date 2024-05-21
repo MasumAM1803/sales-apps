@@ -132,4 +132,26 @@ class ProductController extends Controller
                 'message' => 'Delete Product Failed']);
         }
     }
+
+    public function compare()
+    {
+        $products = DB::table('sales', 's')
+            ->selectRaw('p.type, SUM(s.total_sales) AS total_sales')
+            ->rightJoin('products AS p', 'p.id', '=', 's.product_id')
+            ->groupBy('p.type')
+            ->orderByDesc('total_sales')
+            ->get();
+
+        if ($products) {
+            return response()->json([
+                'status'=> 'success',
+                'message' => 'Products Retrieved',
+                'data'=> $products
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Products Failed to Retrieve']);
+        }
+    }
 }

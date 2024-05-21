@@ -56,7 +56,7 @@ export default function List() {
                                 </div>
                             </div>
                         </div>
-                        <div class="relative overflow-x-auto">
+                        <div className="relative overflow-x-auto">
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -64,7 +64,14 @@ export default function List() {
                                         <th className="px-6 py-3">Nama Barang</th>
                                         <th className="px-6 py-3">Jenis Barang</th>
                                         <th className="px-6 py-3">Stok</th>
-                                        <th className="px-6 py-3">Total Terjual</th>
+                                        <th className="px-6 py-3">
+                                            Total Terjual
+                                            <p>
+                                            (<Link href={route('product.compare.list')} className='lowercase text-blue-500'>
+                                                Lihat Perbandingan
+                                            </Link>)
+                                            </p>
+                                        </th>
                                         <th className="px-6 py-3">Action</th>
                                     </tr>
                                 </thead>

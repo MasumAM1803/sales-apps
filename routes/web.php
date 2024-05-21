@@ -30,6 +30,7 @@ Route::get('/admin/product', [ProductController::class, 'index'])->name('product
 Route::get('/admin/product/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
 Route::get('/admin/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::get('/admin/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::get('/admin/product/compare', [ProductController::class, 'compare'])->name('product.compare.list');
 
 Route::get('/admin/sales', [SalesController::class, 'index'])->name('sales.list');
 // Route::get('/admin/sales/detail/{id}', [SalesController::class, 'detail'])->name('sales.detail');
