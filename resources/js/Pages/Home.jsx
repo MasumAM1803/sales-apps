@@ -2,7 +2,7 @@ import { Link, Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome() {
     const [product, setProduct] = useState([]);
     const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
 
