@@ -4,14 +4,6 @@ import { Head } from '@inertiajs/react';
 import axios from "axios";
 
 export default function Dashboard({ auth }) {
-    const [sales, setSales] = useState([])
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/sales')
-        .then((res) => {
-            setSales(res.data.data);
-        })
-    }, [])
-
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -25,14 +17,6 @@ export default function Dashboard({ auth }) {
                         <div className="p-6 text-gray-900">You're logged in!</div>
                     </div>
                 </div>
-            </div>
-
-            <div>
-                {
-                    sales.map((item, index) => (
-                        <p id={index}>{item.name}</p>
-                    ))
-                }
             </div>
             
         </AuthenticatedLayout>

@@ -52,29 +52,42 @@ class SalesController extends Controller
         }
     }
 
-    public function store(SalesRequest $request) 
+    public function store(Request $request) 
     {
+        try {
+            DB::beginTransaction();
 
-        $product = Product::find($request->product_id);
+            $datas = collect($request->all());
+            foreach($datas as $data) {
+                $item = collect($data);
+                
+                $product = Product::find($item['product_id']);
 
-        if ($product->stock) {
-            $product->decrement('stock', $request->total_sales);
-        }
+                if ($product->stock) {
+                    $product->decrement('stock', $item['total_sales']);
+                }
 
-        $sales = Sales::create([
-            'product_id' => $request->product_id,
-            'total_sales' => $request->total_sales,
-            'transaction_date' => $request->transaction_date,
-        ]);
-
-        if ($product && $sales) {
-            return response()->json([
-                'status'=>'success',
-                'message' => 'Add Sales Successfully']);
-        } else {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Add Sales Failed']);
+                $sales = Sales::create([
+                    'product_id' => $item['product_id'],
+                    'total_sales' => $item['total_sales'],
+                    'transaction_date' => $item['transaction_date'],
+                ]);
+            }
+            
+            
+            if ($product && $sales) {
+                DB::commit();
+                return response()->json([
+                    'status'=>'success',
+                    'message' => 'Add Sales Successfully']);
+            } else {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Add Sales Failed',
+                ]);
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
         }
     }
 
