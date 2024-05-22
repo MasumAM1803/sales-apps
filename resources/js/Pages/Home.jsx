@@ -7,7 +7,7 @@ export default function Welcome() {
     const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
 
     const fetchProduct = () => {
-        axios.get('http://127.0.0.1:8000/api/product')
+        axios.post('http://127.0.0.1:8000/api/products')
         .then((res) => {
             setProduct(res.data.data);
         })

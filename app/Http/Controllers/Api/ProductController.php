@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $products = DB::table('sales', 's')
             ->selectRaw('p.id, p.name, p.stock, SUM(s.total_sales) AS total_sales, s.product_id, s.transaction_date, p.type')
             ->rightJoin('products AS p', 'p.id', '=', 's.product_id')
             ->groupBy('p.id')
+            ->where('p.name', 'LIKE', '%' . $request->search . '%')
             ->get();
 
         if ($products) {
