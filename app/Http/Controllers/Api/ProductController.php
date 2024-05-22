@@ -12,7 +12,6 @@ class ProductController extends Controller
 {
     public function index()
     {
-        // $products = Product::all();
         $products = DB::table('sales', 's')
             ->selectRaw('p.id, p.name, p.stock, SUM(s.total_sales) AS total_sales, s.product_id, s.transaction_date, p.type')
             ->rightJoin('products AS p', 'p.id', '=', 's.product_id')
