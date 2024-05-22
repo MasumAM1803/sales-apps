@@ -28,7 +28,7 @@ export default function Create({ id }) {
     }
     return (
         <>
-            <Head title="Welcome" />
+            <Head title="Product - Create" />
             
             <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
