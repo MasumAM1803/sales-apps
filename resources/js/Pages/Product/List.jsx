@@ -7,8 +7,8 @@ export default function List() {
     const [query, setQuery] = useState("");
 
     const fetchProduct = () => {
-        const data = { search: query }
-        axios.post('http://127.0.0.1:8000/api/products', data)
+        const word = { search: query }
+        axios.post('http://127.0.0.1:8000/api/products', word)
         .then((res) => {
             setProduct(res.data.data);
         })

@@ -28,8 +28,8 @@ Route::put('/product/{id}', [ProductController::class, 'update']);
 Route::delete('/product/{id}', [ProductController::class, 'destroy']);
 Route::get('/product-compare', [ProductController::class, 'compare']);
 
-Route::get('/sales', [SalesController::class, 'index']);
-Route::get('/sales/{id}', [SalesController::class, 'show']);
-Route::post('/sales', [SalesController::class, 'store']);
-Route::put('/sales/{id}', [SalesController::class, 'update']);
-Route::delete('/sales/{id}', [SalesController::class, 'destroy']);
+Route::post('/sales', [SalesController::class, 'index']);
+Route::get('/sale/{id}', [SalesController::class, 'show']);
+Route::post('/sale', [SalesController::class, 'store']);
+Route::put('/sale/{id}', [SalesController::class, 'update']);
+Route::delete('/sale/{id}', [SalesController::class, 'destroy']);

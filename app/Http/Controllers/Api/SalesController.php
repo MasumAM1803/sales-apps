@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $sales = DB::table('sales', 's')
             ->selectRaw('s.id, p.name, p.stock, s.total_sales, s.transaction_date, p.type')
             ->join('products AS p', 'p.id', '=', 's.product_id')
+            ->where('p.name', 'LIKE', '%' . $request->search . '%')
             ->get();
 
         if ($sales) {

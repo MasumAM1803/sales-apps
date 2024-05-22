@@ -7,14 +7,15 @@ export default function List() {
     const [query, setQuery] = useState("");
 
     const fetchSales = () => {
-        axios.get('http://127.0.0.1:8000/api/sales')
+        const word = { search: query }
+        axios.post('http://127.0.0.1:8000/api/sales', word)
         .then((res) => {
             setSales(res.data.data);
         })
     }
 
     const deleteSales = (id) => {
-        axios.delete(`http://127.0.0.1:8000/api/sales/${id}`)
+        axios.delete(`http://127.0.0.1:8000/api/sale/${id}`)
         .then((res) => {
             alert('Sales Deleted Successfully')
             window.location.replace(route('sales.list'))

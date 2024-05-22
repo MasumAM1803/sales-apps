@@ -8,7 +8,7 @@ export default function Edit({ id }) {
     const [quantity, setQuantity] = useState(0);
 
     const fetchSales = () => {
-        axios.get(`http://127.0.0.1:8000/api/sales/${id}`)
+        axios.get(`http://127.0.0.1:8000/api/sale/${id}`)
         .then((res) => {
             const data = res.data.data[0];
             setSalesId(data.id)
@@ -29,7 +29,7 @@ export default function Edit({ id }) {
             total_sales: quantity,
         }
         
-        axios.put(`http://127.0.0.1:8000/api/sales/${salesId}`, data)
+        axios.put(`http://127.0.0.1:8000/api/sale/${salesId}`, data)
         .then((res) => {
             alert('Quantity Edited Successfully')
             window.location.replace(route('sales.list'))
